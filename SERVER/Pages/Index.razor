@@ -1,0 +1,67 @@
+﻿@page "/"
+
+@if (!ShowReport)
+{
+    <div>
+        <table>
+            <tr>
+                <th>Data Name</th>
+                <th>Report</th>
+        
+            </tr>
+            <tr>
+                <td>Data 1</td>
+                <td>
+                    <button onclick="@(() => ToggleBut1())">Report</button>
+                </td>
+        
+            </tr>
+            <tr>
+                <td>Data 2</td>
+                <td>
+                    <button onclick="@(() => ToggleBut2())">Report</button>
+                </td>        
+            </tr>
+        </table>    
+    </div>
+}
+else
+{
+    @if (ShowReportDetail)
+    {
+        <ReportViewer BackToTable="ToggleShow" Label="Report Viewer 1" />
+    }
+    else
+    {
+        <ReportViewer BackToTable="ToggleShow" Label="Report Viewer 2" />
+    }
+
+}
+
+
+@code {
+    bool ShowReport = false;
+    bool ShowReportDetail;    
+
+    void ToggleShow()
+    {
+        ShowReport = !ShowReport;
+        
+    }
+
+    void ToggleBut1()
+    {
+        Console.WriteLine("Toggle1");
+        ShowReport = true;
+        ShowReportDetail = true;
+        
+    }
+    void ToggleBut2()
+    {
+        Console.WriteLine("Toggle2");
+        ShowReport = true;
+        ShowReportDetail = false;
+        
+    }
+}
+
